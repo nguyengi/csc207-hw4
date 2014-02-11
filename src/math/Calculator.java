@@ -7,6 +7,11 @@ import java.util.Arrays;
 public class Calculator
 {
   Fraction[] rs = new Fraction[8];
+  /*
+   * @params 
+   * @return
+   * Purpose
+   */
 
   public Fraction evaluate(String expression)
     throws Exception
@@ -45,9 +50,10 @@ public class Calculator
                                                          vals[i].substring(slash + 1,
                                                                            vals[i].length()))));
                   }
-                catch(DivideByZeroException e0){
-                  throw e0;
-                }
+                catch (DivideByZeroException e0)
+                  {
+                    throw e0;
+                  }
                 catch (Exception e1)
                   {
                     throw new Exception("Expression malformed. Error at "

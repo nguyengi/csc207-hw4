@@ -90,12 +90,12 @@ public class Fraction
     return true;
   } // equals (Object)
 
-  public Fraction
-    multiplyBy (BigInteger multiplier)
-      throws Exception
-  {
-    return new Fraction (this.num.multiply (multiplier), this.denom);
-  } // multiplyBy(BigInteger)
+//  public Fraction
+//    multiplyBy (BigInteger multiplier)
+//      throws Exception
+//  {
+//    return new Fraction (this.num.multiply (multiplier), this.denom);
+//  } // multiplyBy(BigInteger)
 
   public Fraction
     multiplyBy (Fraction multiplier)
@@ -105,12 +105,12 @@ public class Fraction
                          this.denom.multiply (multiplier.denom));
   } // multiplyBy(Fraction)
 
-  public Fraction
-    addTo (BigInteger val)
-      throws Exception
-  {
-    return new Fraction (this.num.add (val.multiply (this.denom)), this.denom);
-  } // addTo(BigInteger)
+//  public Fraction
+//    addTo (BigInteger val)
+//      throws Exception
+//  {
+//    return new Fraction (this.num.add (val.multiply (this.denom)), this.denom);
+//  } // addTo(BigInteger)
 
   public Fraction
     addTo (Fraction val)
@@ -121,12 +121,12 @@ public class Fraction
                          this.denom.multiply (val.denom));
   } // addTo(Fraction)
 
-  public Fraction
-    subtractBy (BigInteger val)
-      throws Exception
-  {
-    return addTo (val.negate ());
-  } // subtractBy (BigInteger)
+//  public Fraction
+//    subtractBy (BigInteger val)
+//      throws Exception
+//  {
+//    return addTo (val.negate ());
+//  } // subtractBy (BigInteger)
 
   public Fraction
     subtractBy (Fraction val)
@@ -135,12 +135,12 @@ public class Fraction
     return addTo (new Fraction (val.num.negate (), val.denom));
   } // subtractBy (Fraction)
 
-  public Fraction
-    divideBy (BigInteger divisor)
-      throws Exception
-  {
-    return multiplyBy (new Fraction (BigInteger.valueOf (1), divisor));
-  } // divideBy (BigInteger)
+//  public Fraction
+//    divideBy (BigInteger divisor)
+//      throws Exception
+//  {
+//    return multiplyBy (new Fraction (BigInteger.valueOf (1), divisor));
+//  } // divideBy (BigInteger)
 
   public Fraction
     divideBy (Fraction divisor)
