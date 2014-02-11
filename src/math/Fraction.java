@@ -10,6 +10,10 @@ public class Fraction
   {
     this.num = num;
     this.denom = denom;
+    if(denom.intValue() < 0){
+      this.num = num.negate();
+      this.denom = denom.negate();
+    }
     if (this.denom.intValue () == 0)
       {
         throw new DivideByZeroException ("Denominator cannot be 0.");
@@ -156,6 +160,8 @@ public class Fraction
   @Override
   public String toString()
   {
+    if(this.denom.intValue() == 1)
+      return num.toString();
     return num.toString () + "/" + denom.toString ();
   }//toString ()
 

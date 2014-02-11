@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 public class Calculator
 {
+  Fraction[] rs = new Fraction[8];
+
   public Fraction evaluate(String expression)
     throws Exception
   {
@@ -18,18 +20,52 @@ public class Calculator
           {
             nums.add(new Fraction(new BigInteger(vals[i])));
           }
-        catch (NumberFormatException e)
+        catch (Exception e)
           {
-            int slash = vals[i].indexOf('/');
-            System.out.println((slash + 1) + " " + (vals[i].length() - 1));
-            nums.add(new Fraction(
-                                  new BigInteger(vals[i].substring(0, slash)),
-                                  new BigInteger(
-                                                 vals[i].substring(slash + 1,
-                                                                   vals[i].length()))));
+            if (vals[i].charAt(0) == 'r'
+                && (Character.getNumericValue(vals[i].charAt(1)) > 7
+                    || Character.getNumericValue(vals[i].charAt(1)) < 0 || vals[i].length() != 2))
+              {
+                throw new Exception("Only r0 to r7 allowed.");
+              }
+            else if (vals[i].charAt(0) == 'r')
+              {
+                nums.add(rs[Character.getNumericValue(vals[i].charAt(1))]);
+              }
+            else
+              {
+                int slash = vals[i].indexOf('/');
+                try
+                  {
+                    nums.add(new Fraction(
+                                          new BigInteger(
+                                                         vals[i].substring(0,
+                                                                           slash)),
+                                          new BigInteger(
+                                                         vals[i].substring(slash + 1,
+                                                                           vals[i].length()))));
+                  }
+                catch(DivideByZeroException e0){
+                  throw e0;
+                }
+                catch (Exception e1)
+                  {
+                    throw new Exception("Expression malformed. Error at "
+                                        + vals[i] + "asd");
+                  }
+              }
           }
         if (i < vals.length - 1)
           ops.add(vals[i + 1]);
+      }
+    int index1;
+    for (int i = ops.size() - 1; i > 0; i--)
+      {
+        if (ops.get(i).equals("=") && !ops.get(i - 1).equals("="))
+          {
+            throw new Exception("Expression malformed. Error at " + ops.get(i)
+                                + "HI");
+          }
       }
     int index = -1;
     while ((index = ops.lastIndexOf("^")) != -1)
@@ -58,8 +94,20 @@ public class Calculator
         Fraction temp = nums.get(index).subtractBy(nums.get(index + 1));
         setNum(index, temp, nums, ops);
       }
-
-    // System.out.println (Arrays.toString (nums.toArray ()));
+    int index3;
+    while ((index3 = ops.lastIndexOf("=")) != -1)
+      {
+        if (vals[index3 * 2].charAt(0) != 'r')
+          throw new Exception("Expression malformed. Error at "
+                              + vals[index3 * 2]);
+        rs[Character.getNumericValue(vals[index3 * 2].charAt(1))] =
+            nums.get(index3 + 1);
+        setNum(index3, nums.get(index3 + 1), nums, ops);
+      }
+    if (ops.size() != 0)
+      {
+        throw new Exception("Expression malformed. Error at " + ops.get(0));
+      }
     return nums.get(0);
   }
 
