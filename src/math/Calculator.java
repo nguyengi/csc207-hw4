@@ -7,8 +7,8 @@ public class Calculator
 {
   Fraction[] rs = new Fraction[8];
   /*
-   * @params 
-   * @return
+   * @param String expression
+   * @return Fraction
    * Purpose
    */
 
