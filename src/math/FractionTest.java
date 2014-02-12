@@ -61,9 +61,11 @@ public class FractionTest
   }
 
   @Test
-  public void testMultiplyBy()
+  public void testMultiplyBy() throws Exception
   {
-
+    assertEquals("Test multiply",
+                 "19673/12",
+                 new Fraction(new BigInteger("9833"), new BigInteger("6")).multiplyBy(new Fraction(BigInteger.valueOf(7), BigInteger.valueOf(12))).toString());
   }
 
   @Test
