@@ -54,20 +54,49 @@ public class FractionTest
 
   }
 
+  /*
+   * @purpose test equals
+   */
   @Test
-  public void testEqualsObject()
+  public void testEqualsObject() throws Exception
   {
+    assertEquals("Test equals",
+                 false,
+                 new Fraction(new BigInteger("9833"), new BigInteger("1")).equals(new Fraction(BigInteger.valueOf(7), BigInteger.valueOf(12))));
+    assertEquals("Test equals",
+                 false,
+                 new Fraction(new BigInteger("9833"), new BigInteger("1")).equals(BigInteger.valueOf(9833)));
+    assertEquals("Test equals",
+                 true,
+                 new Fraction(new BigInteger("19666"), new BigInteger("2")).equals(new Fraction(BigInteger.valueOf(9833), BigInteger.valueOf(1))));
+    assertEquals("Test equals",
+                 false,
+                 new Fraction(new BigInteger("545"), new BigInteger("12")).equals(new Fraction(BigInteger.valueOf(12), BigInteger.valueOf(545))));
+  } // testEqualsObject()
 
-  }
-
+  /*
+   * @purpose test multiplyBy
+   */
   @Test
   public void testMultiplyBy() throws Exception
   {
     assertEquals("Test multiply",
-                 "19673/12",
+                 "68831/72",
                  new Fraction(new BigInteger("9833"), new BigInteger("6")).multiplyBy(new Fraction(BigInteger.valueOf(7), BigInteger.valueOf(12))).toString());
-  }
+    assertEquals("Test multiply",
+                 "1",
+                 new Fraction(new BigInteger("554"), new BigInteger("5")).multiplyBy(new Fraction(BigInteger.valueOf(5), BigInteger.valueOf(554))).toString());
+    assertEquals("Test multiply",
+                 "0",
+                 new Fraction(new BigInteger("0"), new BigInteger("6")).multiplyBy(new Fraction(BigInteger.valueOf(771239821), BigInteger.valueOf(12123123))).toString());
+    assertEquals("Test multiply",
+                 "-983981729837891273982122313",
+                 new Fraction(new BigInteger("983981729837891273982122313"), new BigInteger("-1")).multiplyBy(new Fraction(BigInteger.valueOf(2), BigInteger.valueOf(2))).toString());
+  } // testMultiplyBy()
 
+  /*
+   * @purpose test addTo
+   */
   @Test
   public void testAddTo() throws Exception
   {
@@ -83,8 +112,11 @@ public class FractionTest
 	  assertEquals("Test add",
               "0",
               new Fraction(new BigInteger("-12"), new BigInteger("7")).addTo(new Fraction(BigInteger.valueOf(24), BigInteger.valueOf(14))).toString());
-  }
-
+  } // testAddTo()
+  
+  /*
+   * @purpose test subtractBy
+   */
   @Test
   public void testSubtractBy() throws Exception
   {
@@ -100,7 +132,11 @@ public class FractionTest
 	  assertEquals("Test subtract",
               "0",
               new Fraction(new BigInteger("-12"), new BigInteger("7")).subtractBy(new Fraction(BigInteger.valueOf(12), BigInteger.valueOf(-7))).toString());
-  }
+  } // testSubtractBy()
+  
+  /*
+   * @purpose test divideBy
+   */
 
   @Test
   public void testDivideBy()
@@ -118,8 +154,11 @@ public class FractionTest
     assertEquals("Test divide",
             "123/8",
             new Fraction(new BigInteger("123"), new BigInteger("-1")).divideBy(new Fraction(BigInteger.valueOf(-8))).toString());
-  }
+  } // testDivideBy()
 
+  /*
+   * @purpose test expt
+   */
   @Test
   public void testExpt()
     throws Exception
@@ -140,8 +179,11 @@ public class FractionTest
                  "0",
                  new Fraction(new BigInteger("0"), new BigInteger("10")).expt(3)
                                                                         .toString());
-  }
+  } // testExpt()
 
+  /*
+   * @purpose test toString
+   */
   @Test
   public void testToString()
     throws Exception
@@ -158,6 +200,6 @@ public class FractionTest
     assertEquals("Test toString",
                  "-311/4",
                  new Fraction(new BigInteger("622"), new BigInteger("-8")).toString());
-  }
+  } // testToString()
 
-}
+} // class FractionTest
