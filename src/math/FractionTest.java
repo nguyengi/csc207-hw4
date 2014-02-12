@@ -67,15 +67,37 @@ public class FractionTest
   }
 
   @Test
-  public void testAddTo()
+  public void testAddTo() throws Exception
   {
-
+	  assertEquals("Test add",
+              "19673/12",
+              new Fraction(new BigInteger("9833"), new BigInteger("6")).addTo(new Fraction(BigInteger.valueOf(7), BigInteger.valueOf(12))).toString());
+	  assertEquals("Test add",
+              "100",
+              new Fraction(new BigInteger("99"), new BigInteger("1")).addTo(new Fraction(BigInteger.valueOf(2), BigInteger.valueOf(2))).toString());
+	  assertEquals("Test add",
+              "-10000000000000000000000",
+              new Fraction(new BigInteger("-19999999999999999999999"), new BigInteger("2")).addTo(new Fraction(BigInteger.valueOf(1), BigInteger.valueOf(-2))).toString());
+	  assertEquals("Test add",
+              "0",
+              new Fraction(new BigInteger("-12"), new BigInteger("7")).addTo(new Fraction(BigInteger.valueOf(24), BigInteger.valueOf(14))).toString());
   }
 
   @Test
-  public void testSubtractBy()
+  public void testSubtractBy() throws Exception
   {
-
+	  assertEquals("Test subtract",
+              "6553/4",
+              new Fraction(new BigInteger("9833"), new BigInteger("6")).subtractBy(new Fraction(BigInteger.valueOf(7), BigInteger.valueOf(12))).toString());
+	  assertEquals("Test subtract",
+              "-100",
+              new Fraction(new BigInteger("-99"), new BigInteger("1")).subtractBy(new Fraction(BigInteger.valueOf(2), BigInteger.valueOf(2))).toString());
+	  assertEquals("Test subtract",
+              "10000000000000000000000",
+              new Fraction(new BigInteger("20000000000000000000001"), new BigInteger("2")).subtractBy(new Fraction(BigInteger.valueOf(1), BigInteger.valueOf(2))).toString());
+	  assertEquals("Test subtract",
+              "0",
+              new Fraction(new BigInteger("-12"), new BigInteger("7")).subtractBy(new Fraction(BigInteger.valueOf(12), BigInteger.valueOf(-7))).toString());
   }
 
   @Test
@@ -91,6 +113,9 @@ public class FractionTest
     assertEquals("Test divide",
                  "49/5",
                  new Fraction(new BigInteger("40353607"), new BigInteger("588245")).divideBy(new Fraction(BigInteger.valueOf(7))).toString());
+    assertEquals("Test divide",
+            "123/8",
+            new Fraction(new BigInteger("123"), new BigInteger("-1")).divideBy(new Fraction(BigInteger.valueOf(-8))).toString());
   }
 
   @Test
