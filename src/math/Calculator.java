@@ -12,7 +12,7 @@ public class Calculator
    * 
    * @return Fraction
    * 
-   * @purpose compute a Fraction from the String expression, supporting
+   * @purpose compute a Fraction result from the String expression, supporting
    * operations + - * / ^ and assignment = to memory elements r0 to r7,
    * following order of operations, given that expression follows the correct
    * format.
@@ -83,7 +83,7 @@ public class Calculator
     while ((index = ops.lastIndexOf("^")) != -1)
       {
         Fraction temp =
-            nums.get(index).expt(nums.get(index + 1).num.intValue());
+            nums.get(index).expt(nums.get(index + 1).getNumerator().intValue());
         setNum(index, temp, nums, ops);
       } // performs every ^ operation (from the right first)
     while ((index = ops.indexOf("*")) != -1)

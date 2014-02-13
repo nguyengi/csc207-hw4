@@ -4,16 +4,12 @@ import java.math.BigInteger;
 
 public class Fraction
 {
-  BigInteger num, denom;
+  private BigInteger num, denom;
 
   public Fraction (BigInteger num, BigInteger denom) throws Exception
   {
     this.num = num;
     this.denom = denom;
-    if(denom.intValue() < 0){
-      this.num = num.negate();
-      this.denom = denom.negate();
-    }
     if (this.denom.intValue () == 0)
       {
         throw new DivideByZeroException ("Denominator cannot be 0.");
@@ -44,12 +40,14 @@ public class Fraction
     setNumerator (BigInteger num)
   {
     this.num = num;
+    simplify();
   } // setNumerator ()
 
   public void
     setDenominator (BigInteger denom)
   {
     this.denom = denom;
+    simplify();
   } // setDenominator ()
 
   @Override
@@ -143,6 +141,10 @@ public class Fraction
     BigInteger val = this.num.gcd (this.denom);
     this.num = this.num.divide (val);
     this.denom = this.denom.divide (val);
+    if(denom.intValue() < 0){
+      this.num = num.negate();
+      this.denom = denom.negate();
+    }
   } // simplify ()
 
 } // Fraction Class
